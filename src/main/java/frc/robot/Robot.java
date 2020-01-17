@@ -41,7 +41,7 @@ public class Robot extends TimedRobot {
    public static boolean isColorSensedBLue = false;
    private final I2C.Port i2cPort = I2C.Port.kOnboard;
    private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
-   private final ColorMatch m_Colormatch = new ColorMatch();
+   private final ColorMatch m_colorMatch = new ColorMatch();
    private final Color kBlueTarget = ColorMatch.makeColor(0.143, 0.427, 0.429);
    private final Color kGreenTarget = ColorMatch.makeColor(0.197, 0.561, 0.240);
    private final Color kRedTarget = ColorMatch.makeColor(0.561, 0.232, 0.114);
@@ -64,10 +64,10 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
 
     //adds the target colors to the Color Match
-    m_Colormatch.addColorMatch(kBlueTarget);
-    m_Colormatch.addColorMatch(kGreenTarget);
-    m_Colormatch.addColorMatch(kRedTarget);
-    m_Colormatch.addColorMatch(kYellowTarget);    
+    m_colorMatch.addColorMatch(kBlueTarget);
+    m_colorMatch.addColorMatch(kGreenTarget);
+    m_colorMatch.addColorMatch(kRedTarget);
+    m_colorMatch.addColorMatch(kYellowTarget);    
   }
 
   /**
@@ -96,7 +96,7 @@ public class Robot extends TimedRobot {
      * Run the color match algorithm on our detected color
      */
     String colorString;
-    ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+    ColorMatchResult match = m_colorMatch.matchClosestColor(detectedColor);
 
     if (match.color == kBlueTarget) {
       colorString = "Blue";
